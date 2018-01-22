@@ -1,0 +1,6 @@
+Flask==0.12
+Flask_WTF==0.14
+flask_login==0.4.1
+flask-migrate==2.1.1
+flask_sqlalchemy==2.3.2
+
