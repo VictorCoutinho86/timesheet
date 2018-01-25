@@ -6,9 +6,9 @@ from app.models import Usuario
 
 
 class LoginForm(FlaskForm):
-    username = StringField('username', validators=[DataRequired()])
-    password = PasswordField('password', validators=[DataRequired()])
-    remember_me = BooleanField('remember_me')
+    username = StringField('Usuário', validators=[DataRequired()])
+    password = PasswordField('Senha', validators=[DataRequired()])
+    remember_me = BooleanField('Me Lembrar?')
     submit = SubmitField('Login')
 
 
@@ -17,9 +17,9 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     username = StringField('Usuário', validators=[DataRequired()])
     pis = StringField('PIS', validators=[DataRequired()])
-    password = PasswordField('Password', validators=[DataRequired()])
+    password = PasswordField('Senha', validators=[DataRequired()])
     password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+        'Confirme a Senha', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Cadastre-se')
 
     def validate_username(self, username):
@@ -35,7 +35,7 @@ class RegistrationForm(FlaskForm):
     def validate_pis(self, pis):
         user = Usuario.query.filter_by(pis=pis.data).first()
         if user is not None:
-            raise ValidationError('Já existe um cadastro com este numero de PIS.')
+            raise ValidationError('Este PIS já está cadastrado.')
 
 
 class OcorrenciaForm(FlaskForm):
